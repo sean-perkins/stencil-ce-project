@@ -2,10 +2,14 @@ import { Component, Prop, h, Host } from '@stencil/core';
 import { format } from '../../utils/utils';
 
 import { defineCustomElement } from '@ionic/core/components/ion-button.js';
+import { getIonMode } from '../../global/ionic-global';
 
 @Component({
   tag: 'my-component',
-  styleUrl: 'my-component.css',
+  styleUrls: {
+    ios: 'my-component.css',
+    md: 'my-component.css',
+  },
   shadow: true,
 })
 export class MyComponent {
@@ -34,7 +38,7 @@ export class MyComponent {
 
   render() {
     return (
-      <Host>
+      <Host class={getIonMode(this)}>
         <div>Hello, World! I'm {this.getText()}</div>
         <ion-button>Default</ion-button>
       </Host>
